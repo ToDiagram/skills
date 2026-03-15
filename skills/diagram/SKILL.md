@@ -1,9 +1,9 @@
 ---
-name: todiagram-diagramming
+name: diagram
 description: Create, repair, and calibrate ToDiagram custom-format diagrams (.todiagram) for end users, including system architecture maps, process/flow diagrams, schema normalization, and readability-driven grouping/splitting. Use when users ask for ToDiagram JSON generation, invalid payload fixes, architecture/flow modeling, simplification/detail tuning of existing diagrams, or stable file-based diagram output.
 ---
 
-# ToDiagram Diagramming
+# Diagram
 
 ## Mission
 Generate human-readable `.todiagram` JSON that is valid for ToDiagram's custom schema and optimized for fast visual comprehension.

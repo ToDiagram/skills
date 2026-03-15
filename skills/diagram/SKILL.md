@@ -35,7 +35,9 @@ If a request spans multiple modes, run in this order:
 
 ## File Output Policy
 - If user provides a target path/name, write there.
-- If user does not provide one, write to `diagram.todiagram` in current working directory.
+- If user does not provide one, derive a short kebab-case filename from the diagram's topic or subject
+  (e.g., "system architecture" → `system-architecture.todiagram`, "user onboarding flow" → `user-onboarding-flow.todiagram`, "AWS infrastructure" → `aws-infrastructure.todiagram`).
+  Write to the current working directory.
 - For multi-diagram outputs, use stable descriptive names:
   `overview.todiagram`, `domain-<name>.todiagram`, `flow-<name>.todiagram`.
 - After writing, run:

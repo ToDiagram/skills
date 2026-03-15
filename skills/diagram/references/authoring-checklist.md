@@ -14,7 +14,7 @@
 
 ## Output Stability
 - Prefer writing a `.todiagram` file over inline JSON.
-- If no file path is given, use `diagram.todiagram`.
+- If no file path is given, derive a short kebab-case filename from the diagram's topic (e.g., `system-architecture.todiagram`, `user-onboarding-flow.todiagram`).
 - Use deterministic file names for diagram sets (`overview.todiagram`, `domain-*.todiagram`).
 
 ## Rendering-Safe Node Rules

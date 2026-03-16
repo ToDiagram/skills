@@ -35,14 +35,13 @@ Notes:
 - `direction` is optional but recommended.
 - `configuration` is optional and only needed for custom key mapping.
 
-## 1.1 Canonical Key Names (No Aliases)
-- Use `nodes`, never `children`.
-- Use `edges`, never `links`.
-- Use `from` / `to`, never `source` / `target`.
+## 1.1 Canonical Key Names
+- Use `nodes` (the canonical key for child arrays).
+- Use `edges` (the canonical key for connections).
+- Use `from` / `to` (the canonical keys for edge endpoints).
 - Put row data as direct node properties.
-- Do not use a `fields` wrapper key (object or array).
-- `imageUrl` and `iconUrl` are optional: omit keys when unused (do not send `null`).
-- Node-level `nodes` is optional: include it only when the node has real children (no `nodes: []` on leaf nodes).
+- `imageUrl` and `iconUrl` are optional: omit the keys entirely when unused.
+- Node-level `nodes`: include only when the node has real children.
 
 Bad:
 
@@ -83,7 +82,7 @@ Parser behavior:
 - `id` is required.
 - `label` is strongly recommended.
 - `nodes` makes a container/group node and should be omitted for leaf nodes.
-- `imageUrl` creates image-focused rendering and should not be mixed with dense metadata properties.
+- `imageUrl` creates image-focused rendering; keep these nodes minimal (image replaces row display).
 - Additional properties are rendered as rows (primitives are most readable).
 - Arrays/objects in properties become summary rows and can create linked child detail nodes.
 

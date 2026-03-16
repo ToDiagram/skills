@@ -5,10 +5,10 @@
 - Every node has unique `id`.
 - Every edge `from` and `to` matches a known `id`.
 - Direction uses `RIGHT`, `LEFT`, `UP`, or `DOWN`.
-- Node nesting key is `nodes` (not `children`).
-- Node metadata is direct properties (never use a `fields` wrapper key).
-- Omit `imageUrl` / `iconUrl` when not used (do not set `null`).
-- Omit node-level `nodes` for leaf nodes (do not send `nodes: []`).
+- Node nesting key is `nodes`.
+- Node metadata is direct properties on the node object.
+- Include `imageUrl` / `iconUrl` only when used; omit the keys entirely otherwise.
+- Include node-level `nodes` only for containers with real children.
 - Run validator script:
   `python scripts/validate_todiagram_schema.py <file>.todiagram`
 
@@ -18,15 +18,15 @@
 - Use deterministic file names for diagram sets (`overview.todiagram`, `domain-*.todiagram`).
 
 ## Rendering-Safe Node Rules
-- Container nodes (`nodes` with children) do not use `imageUrl`.
-- `imageUrl` nodes do not carry dense extra metadata properties.
+- Use `iconUrl` (instead of `imageUrl`) on container nodes to keep child rows visible.
+- Keep `imageUrl` nodes minimal — image rendering replaces row display.
 - Use `iconUrl` when rows should stay visible.
 - Labels are concise and scannable (2-4 words preferred).
 - Prefer Iconify icon specs (`logos:*`, `fa7-solid:*`) over CDN URL icons.
 
 ## Readability Rules
 - Group related nodes under parents.
-- Avoid flat graphs when logical grouping exists.
+- Group related nodes under parents when logical grouping exists.
 - Edge labels are short verbs/protocols, not sentences.
 - No edges from a parent to its own child unless explicitly required.
 

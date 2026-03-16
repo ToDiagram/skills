@@ -43,9 +43,9 @@ Suggested groups:
 
 Direction: `RIGHT`
 
-## Anti-Patterns
-- Single flat layer with 20+ sibling nodes.
-- Containers that have both many children and heavy row metadata.
-- Over-labeling every edge with sentence-length text.
-- Mixing audience levels in one diagram (executive + code internals).
-- Using non-canonical keys (`children`, `fields` wrappers) in raw `.todiagram`.
+## Quality Checks
+- Group nodes into layers when siblings exceed ~8; keep flat lists small.
+- Choose either many children or rich metadata per container, not both.
+- Keep edge labels to 1-3 words; reserve detail for node metadata.
+- Target one audience level per diagram (split executive vs. engineering views).
+- Use only canonical keys (`nodes`, `edges`, `from`, `to`) in raw `.todiagram`.

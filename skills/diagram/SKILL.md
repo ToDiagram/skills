@@ -25,10 +25,9 @@ If a request spans multiple modes, run in this order:
   create a `.todiagram` file and return its path.
 - Only return inline JSON when the user explicitly asks for inline output.
 - Use canonical raw `.todiagram` keys: `nodes`, `edges`, `direction`, `id`, `label`, `from`, `to`, `imageUrl`, `iconUrl`.
-- Never emit alias keys such as `children`, `links`, `source`, `target`.
-- Never emit a `fields` wrapper key. Put metadata directly on the node object.
-- Omit `imageUrl` and `iconUrl` when unused. Never set these keys to `null`.
-- Omit node-level `nodes` for leaf nodes. Include `nodes` only for true containers with real children.
+- Put metadata directly on the node object.
+- Include `imageUrl` and `iconUrl` only when used; omit the keys entirely otherwise.
+- Include node-level `nodes` only for true containers with real children.
 - Restrict `direction` to `RIGHT`, `LEFT`, `UP`, or `DOWN` (`UP`, not `TOP`).
 - Keep IDs globally unique; ensure every edge endpoint resolves to an existing ID.
 - Prefer Iconify specs (`logos:*`, `fa7-solid:*`) for icons; use external URL icons only if the user explicitly requests them.
@@ -69,8 +68,8 @@ Use this scaffold unless the user provides a different envelope:
 
 Rules:
 - Add `configuration` only when key mappings deviate from defaults.
-- Normalize invalid payloads (`children` -> `nodes`, `source/target` -> `from/to`).
-- Flatten any `fields` wrapper into direct node properties.
+- Normalize payloads to canonical keys (`children` → `nodes`, `source`/`target` → `from`/`to`).
+- Flatten `fields` wrappers into direct node properties.
 
 ### 2) System Architecture
 Read:

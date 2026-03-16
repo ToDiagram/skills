@@ -7,7 +7,7 @@ Pick one primary axis:
 - Team ownership
 - Environment
 
-Avoid mixing all axes in one diagram.
+Pick one axis per diagram for clarity.
 
 ## Step 2: Assign Node Roles
 - Parent container: context boundary.

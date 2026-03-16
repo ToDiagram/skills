@@ -16,10 +16,10 @@ Good label categories:
 
 ## Tone and Length
 - 1-3 words is ideal.
-- Avoid sentence-length labels.
+- Keep labels to a short phrase (1-3 words).
 - Keep terminology consistent across the flow.
 
-## Avoid
-- Ambiguous labels like `process` or `handle` everywhere.
-- Different words for the same transition type.
-- Labels that duplicate node names without new information.
+## Label Quality Checks
+- Use specific verbs (`validate`, `route`, `persist`) over generic ones (`process`, `handle`).
+- Use the same word for the same transition type throughout the diagram.
+- Ensure each label adds information beyond the connected node names.

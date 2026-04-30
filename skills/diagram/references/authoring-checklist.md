@@ -6,7 +6,8 @@
 - Every edge `from` and `to` matches a known `id`.
 - Direction uses `RIGHT`, `LEFT`, `UP`, or `DOWN`.
 - Node nesting key is `nodes`.
-- Node metadata is direct properties on the node object.
+- Node display data lives inside the `fields` object (direct properties are deprecated).
+- A node never has both `imageUrl` and `fields`.
 - Include `imageUrl` / `iconUrl` only when used; omit the keys entirely otherwise.
 - Include node-level `nodes` only for containers with real children.
 - Run validator script:
@@ -34,7 +35,8 @@
 1. Fix missing/duplicate IDs.
 2. Fix broken edge references.
 3. Normalize aliases (`children` to `nodes`, `source/target` to `from/to`).
-4. Flatten `fields` wrappers (object or array) into direct node properties.
-5. Reduce cluttered metadata on visual nodes.
-6. Re-group nodes into clear containers.
-7. Recheck direction and edge label clarity.
+4. Move deprecated direct properties into the `fields` object.
+5. Resolve `imageUrl` + `fields` conflicts on the same node.
+6. Reduce cluttered metadata on visual nodes.
+7. Re-group nodes into clear containers.
+8. Recheck direction and edge label clarity.

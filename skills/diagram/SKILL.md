@@ -24,13 +24,16 @@ If a request spans multiple modes, run in this order:
 - Default to file-first output for stability:
   create a `.todiagram` file and return its path.
 - Only return inline JSON when the user explicitly asks for inline output.
-- Use canonical raw `.todiagram` keys: `nodes`, `edges`, `direction`, `id`, `label`, `from`, `to`, `imageUrl`, `iconUrl`.
-- Put metadata directly on the node object.
+- Use canonical raw `.todiagram` keys: `nodes`, `edges`, `direction`, `id`, `label`, `from`, `to`, `imageUrl`, `iconUrl`, `custom_theme`, `fields`.
+- Put node display data inside the `fields` object. Direct properties on the node are deprecated by the schema.
+- Never combine `imageUrl` with `fields` on the same node — `imageUrl` replaces row rendering.
 - Include `imageUrl` and `iconUrl` only when used; omit the keys entirely otherwise.
 - Include node-level `nodes` only for true containers with real children.
 - Restrict `direction` to `RIGHT`, `LEFT`, `UP`, or `DOWN` (`UP`, not `TOP`).
 - Keep IDs globally unique; ensure every edge endpoint resolves to an existing ID.
-- Prefer Iconify specs (`logos:*`, `fa7-solid:*`) for icons; use external URL icons only if the user explicitly requests them.
+- Prefer Iconify specs (`logos:*`, `fa7-solid:*`, short forms like `fa:gear`) for icons; use external URL icons only if the user explicitly requests them.
+- When the exact Iconify slug is unknown, look it up via `curl -fsSL 'https://api.iconify.design/search?query=<term>&limit=10'` (optionally `&prefix=logos`) and pick a slug from the returned `icons` array. Use the ToDiagram MCP icon-search tool when available.
+- Apply per-node theming via `custom_theme` (`NODE`, `EDGE`, `TEXT` groups) — see schema contract for full key list.
 
 ## File Output Policy
 - If user provides a target path/name, write there.
@@ -69,7 +72,8 @@ Use this scaffold unless the user provides a different envelope:
 Rules:
 - Add `configuration` only when key mappings deviate from defaults.
 - Normalize payloads to canonical keys (`children` → `nodes`, `source`/`target` → `from`/`to`).
-- Flatten `fields` wrappers into direct node properties.
+- Move deprecated direct node properties into the `fields` object.
+- If a node has both `imageUrl` and `fields`, drop one — they cannot coexist.
 
 ### 2) System Architecture
 Read:

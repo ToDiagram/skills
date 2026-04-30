@@ -129,12 +129,12 @@ def _validate_strict_canonical(diagram: Any) -> list[Issue]:
         )
       )
 
-    if "fields" in node:
+    if "imageUrl" in node and "fields" in node:
       issues.append(
         Issue(
           path=path + ["fields"],
-          code="canonical.fields_wrapper",
-          message="Do not use `fields` wrapper; put metadata directly on the node",
+          code="canonical.image_fields_conflict",
+          message="`imageUrl` cannot be combined with `fields` (image replaces row display)",
         )
       )
 
